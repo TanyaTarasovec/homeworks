@@ -1,11 +1,13 @@
-list = []
 for num in range(1, 101):
+
     if num % 15 == 0:
-        list.append('FizzBuzz')
+        print('FizzBuzz')
+
     elif num % 3 == 0:
-        list.append('Fizz')
+        print('Fizz')
+
     elif num % 5 == 0:
-        list.append('Buzz')
+        print('Buzz')
+
     else:
-        list.append(num)
-        print(list)
+        print(num)
