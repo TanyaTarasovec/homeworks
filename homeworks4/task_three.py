@@ -8,11 +8,11 @@ def get_answers():
 
         if len(set(map(int, num))) == 4:
             answers.append(list(map(int, num)))
-            return answers 
+            return answers
 
 
-def get_1_answer(one):
-    numeral = random.choice(one)
+def get_1_answer(answers):
+    numeral = random.choice(answers)
     return numeral
 
 
@@ -29,14 +29,14 @@ def input_numbers():
 
 def check(numbers, true_numbers):
     bulls, cows = 0, 0
-    for i, nums in enumerate(input_numbers):
-        if numbers is true_numbers:
+    for i, a in enumerate(numbers):
+        if a is true_numbers:
             if numbers[i] == true_numbers[i]:
                 bulls += 1
             else:
                 cows += 1
                 return bulls, cows
-    
+
 
 def delete_bad_answer(answers, enemy_try, bull, cow):
     for number in answers[:]:
@@ -47,16 +47,17 @@ def delete_bad_answer(answers, enemy_try, bull, cow):
     return answers
 
 
+print("Игра Быки и коровы")
 all_answer = get_answers()
 enemy = get_1_answer(all_answer)
 player = input_numbers()
-print("Игра Быки и коровы")
+
 
 while True:
     print("=" * 10, "Ход игрока", "=" * 10)
     print("Угадайте число компьютера")
-    number = input_numbers()
-    bulls, cows = check(player, enemy)
+    numb = input_numbers()
+    bulls, cows = check(numb, enemy)
     print("Быки", bulls, "Коровы", cows)
     if bulls == 4:
         print("Игрок выиграл")
@@ -71,7 +72,5 @@ print("Быки", bulls, "Коровы", cows)
 if bulls == 4:
     print("Выиграл компьютер")
     print("Компьютер загадал: ", enemy)
-    
-
 else:
-    answer = delete_bad_answer(all_answer, enemy_try, bulls, cows)
+    all_answer = delete_bad_answer(all_answer, enemy_try, bulls, cows)
