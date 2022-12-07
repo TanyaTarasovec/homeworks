@@ -1,76 +1,31 @@
 import random
 
+digits = list(range(10))
+computer_choice = []
 
-def get_answers():
-    answers = []
-    for i in range(10000):
-        num = str(i).zfill(4)
+for _ in range(4):
+    digit = random.choice(digits)
+    digits.remove(digit)
+    computer_choice.append(str(digit))
 
-        if len(set(map(int, num))) == 4:
-            answers.append(list(map(int, num)))
-            return answers
-
-
-def get_1_answer(answers):
-    numeral = random.choice(answers)
-    return numeral
-
-
-def input_numbers():
-    while True:
-        nums = input("Введите 4 неповторяющиеся цифры: ")
-        if len(nums) != 4 or not nums.isdigit():
-            continue
-        nums = list(map(int, nums))
-        if len(set(nums)) == 4:
-            break
-        return nums
-
-
-def check(numbers, true_numbers):
-    bulls, cows = 0, 0
-    for i, a in enumerate(numbers):
-        if a is true_numbers:
-            if numbers[i] == true_numbers[i]:
-                bulls += 1
-            else:
-                cows += 1
-                return bulls, cows
-
-
-def delete_bad_answer(answers, enemy_try, bull, cow):
-    for number in answers[:]:
-        t_bull, t_cow = check(number, enemy_try)
-
-        if t_bull != bull or t_cow != cow:
-            answers.remove(number)
-    return answers
-
-
-print("Игра Быки и коровы")
-all_answer = get_answers()
-enemy = get_1_answer(all_answer)
-player = input_numbers()
-
+computer_choice = "".join(computer_choice)
+print(f"Computer_choice: {computer_choice}")
 
 while True:
-    print("=" * 10, "Ход игрока", "=" * 10)
-    print("Угадайте число компьютера")
-    numb = input_numbers()
-    bulls, cows = check(numb, enemy)
-    print("Быки", bulls, "Коровы", cows)
-    if bulls == 4:
-        print("Игрок выиграл")
-        print("Компьютер загадал: ", enemy)
+    user_choice = input("Enter your number: ")
+
+    if user_choice == computer_choice:
+        print("You are win!")
         break
 
-print("=" * 10, "Ход компьютера", "=" * 10)
-enemy_try = get_1_answer(all_answer)
-print("Компьютер говорит, что вы загадали число: ", enemy_try)
-bulls, cows = check(enemy_try, player)
-print("Быки", bulls, "Коровы", cows)
-if bulls == 4:
-    print("Выиграл компьютер")
-    print("Компьютер загадал: ", enemy)
-else:
-    all_answer = delete_bad_answer(all_answer, enemy_try, bulls, cows)
+    cows_counter = 0
+    bulls_counter = 0
+
+    for computer_digit, user_digit in zip(computer_choice, user_choice):
+        if computer_digit == user_digit:
+            bulls_counter += 1
+
+        elif user_digit in computer_choice:
+            cows_counter += 1
+    
+    print(f"{cows_counter} cows, {bulls_counter} bulls. ")
