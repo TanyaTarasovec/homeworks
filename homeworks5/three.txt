@@ -1,0 +1,3 @@
+Python is a high-level, general-purpose programming language with dynamic strong typing and automatic memory management, focused on improving developer productivity, code readability and quality, and ensuring the portability of programs written in it.
+
+Protect this branch from force pushing or deletion, or require status checks before merging
