@@ -3,12 +3,10 @@ class Triangle:
         self.a = a
         self.b = b
         self.c = c
-
-    def triangle_ok(self):
-        if self.a + self.b > self.c:
-            return True
-        else:
-            return ValueError
+        try:
+            self.a + self.b > self.c
+        except ValueError:
+            raise ValueError
 
     def is_right_angled(self):
         if self.a**2 + self.b**2 == self.c**2:
@@ -16,14 +14,17 @@ class Triangle:
         else:
             return False
 
-    def perimetr(self):
-        return self.a + self.b + self.c
+    def __eq__(self, other):
+        if isinstance(other, Triangle):
+            return (self.a == other.a and
+                    self.b == other.b and
+                    self.c == other.c)
+        return False
 
 
 t1 = Triangle(3, 4, 5)
 t2 = Triangle(10, 10, 22)
 t3 = Triangle(11, 11, 20)
 print(t1.is_right_angled())
-print(t2.triangle_ok())
 print(t3.is_right_angled())
-print(t1.perimetr())
+print(t3 != t2)
