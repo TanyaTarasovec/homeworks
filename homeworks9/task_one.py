@@ -16,9 +16,7 @@ class Triangle:
 
     def __eq__(self, other):
         if isinstance(other, Triangle):
-            return (self.a == other.a and
-                    self.b == other.b and
-                    self.c == other.c)
+            return (self.a + self.b + self.c == other.a + other.b + other.c)              
         return False
 
 
@@ -27,4 +25,4 @@ t2 = Triangle(10, 10, 22)
 t3 = Triangle(11, 11, 20)
 print(t1.is_right_angled())
 print(t3.is_right_angled())
-print(t3 != t2)
+print(t3 == t1)
