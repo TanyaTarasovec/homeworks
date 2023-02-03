@@ -1,0 +1,11 @@
+wget  --no-check-certificate 'https://www.gnu.org/licenses/gpl-3.0.txt' -O /tmp/licenses
+
+cd /tmp
+
+cat licenses
+
+grep "GNU\|GPL\|Linux" licenses
+
+^[A-Z].*\.$
+
+[A-Z].*\.$
