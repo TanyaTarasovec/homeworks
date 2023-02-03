@@ -1,0 +1,6 @@
+cat /tmp/chat | grep 'PM\|AM' | cut -d ' ' -f1,2 | sort | uniq
+
+cat /tmp/chat | grep 'PM\|AM' | cut -d ' ' -f1,2 | sort | uniq | grep -c ".*"
+
+grep "?" chat
+
